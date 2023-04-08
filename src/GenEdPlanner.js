@@ -103,11 +103,10 @@ function GenEdPlanner({ courses }) {
   
     for (let i = 0; i < selectedCourses.length; i++) {
       let course = selectedCourses[i];
-
-      if (course.gen_ed.some(code => ['DSNL', 'DSHS', 'DSHU', 'DSSP', 'DSNS'].includes(code.toString()))) {
+  
+      if (course.gen_ed.some(code => ['DSNL', 'DSHS', 'DSHU', 'DSSP'].includes(code.toString()))) {
         fundamentalcreds += parseInt(course.credits);
       }
-      
       
     }
   
