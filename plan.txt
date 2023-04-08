@@ -1,0 +1,21 @@
+Familiarize yourself with React and its basic concepts, such as components, props, and state. You can use the official 
+React documentation or online tutorials to get started. (Learn as you go)
+
+Explore the UMD API and understand how to fetch data from it. You can use tools like Postman or Insomnia to test API requests and 
+responses. 
+
+Design the UI of your app, including the layout, color scheme, and components. You can use a UI design tool like Figma or Sketch 
+to create mockups. Draw UI on paper. 
+
+Implement the functionality to fetch gened courses from the UMD API and display them in the UI. You can use React's built-in 
+fetch() function or a third-party library like Axios to make API requests.
+
+Add interactivity to your app by allowing users to select gened courses and track their progress towards fulfilling gen ed credits. 
+You can use React's state management system to keep track of the selected courses and calculate the remaining credits.
+
+Test your app thoroughly to ensure it works as expected and handles errors gracefully. You can use tools like Jest and React 
+Testing Library to write unit and integration tests.
+
+Deploy your app to a hosting service like Netlify or Heroku so that others can access it online.
+
+
