@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import UmdCourses from './UmdCourses.js';
 import GenEdPlanner from './GenEdPlanner.js';
 
 function App() {

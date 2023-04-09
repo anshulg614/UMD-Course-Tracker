@@ -32,6 +32,7 @@
 }
 
 .mycourse-button {
+  display: block;
   border: none;
   background-color: rgb(146, 19, 36);
   /*59116b*/
@@ -43,6 +44,13 @@
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
+
+.remove-button {
+  display: block;
+  margin-top: 10px;
+}
+
+
 
 .bottomsection {
   display: flex;
@@ -160,7 +168,7 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Change this to adjust the shadow of the title */
 }
 .remove-button {
-  background-color: #000000;
+  background-color: #262424;
   color: white;
   border: none;
   border-radius: 4px;

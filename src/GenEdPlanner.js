@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./GenEdPlanner.css";
+import Footer from "./Footer";
 
 function GenEdPlanner({ courses }) {
   // Create an object to store courses based on their gen eds
@@ -10,7 +11,7 @@ function GenEdPlanner({ courses }) {
         coursesByGenEd[genEd].push(course);
       } else {
         coursesByGenEd[genEd] = [course];
-      } 
+      }
     });
   });
 
@@ -80,74 +81,78 @@ function GenEdPlanner({ courses }) {
     }
     return totalCredits;
   }
-  
+
   function FundamentalCredits(selectedCourses) {
     let fundamentalcreds = 0;
-  
+
     for (let i = 0; i < selectedCourses.length; i++) {
       let course = selectedCourses[i];
-  
-      if (course.gen_ed.some(code => ['FSAW', 'FSPW', 'FSOC', 'FSMA', 'FSAR'].includes(code.toString()))) {
+
+      if (
+        course.gen_ed.toString().includes("FSAW") || course.gen_ed.toString().includes("FSPA") 
+        || course.gen_ed.toString().includes("FSOC") || course.gen_ed.toString().includes("FSMA") 
+        || course.gen_ed.toString().includes("FSAR") 
+      ) {
+
         fundamentalcreds += parseInt(course.credits);
       }
-      
     }
-  
     return fundamentalcreds;
   }
-  
-  
 
-  function DistributiveCredits (selectedCourses) {
-    let fundamentalcreds = 0;
-  
+  function DistributiveCredits(selectedCourses) {
+    let distributivecreds = 0;
+
     for (let i = 0; i < selectedCourses.length; i++) {
       let course = selectedCourses[i];
-  
-      if (course.gen_ed.some(code => ['DSNL', 'DSHS', 'DSHU', 'DSSP'].includes(code.toString()))) {
-        fundamentalcreds += parseInt(course.credits);
+
+      if (
+        course.gen_ed.toString().includes("DSNL") || course.gen_ed.toString().includes("DSNS") 
+        || course.gen_ed.toString().includes("DSHS") || course.gen_ed.toString().includes("DSHU")
+        || course.gen_ed.toString().includes("DSSP")
+      ) {
+        distributivecreds += parseInt(course.credits);
       }
-      
     }
-  
-    return fundamentalcreds;
+
+    return distributivecreds;
   }
 
   function SeriesCredits(selectedCourses) {
-    let fundamentalcreds = 0;
-  
+    let seriescreds = 0;
+
     for (let i = 0; i < selectedCourses.length; i++) {
       let course = selectedCourses[i];
-  
-      if (course.gen_ed.some(code => ['SCIS'].includes(code.toString()))) {
-        fundamentalcreds += parseInt(course.credits);
+
+      if (course.gen_ed.toString().includes(["SCIS"])) {
+        seriescreds += parseInt(course.credits);
       }
-      
     }
-  
-    return fundamentalcreds;
+
+    return seriescreds;
   }
 
   function DiversityCredits(selectedCourses) {
-    let fundamentalcreds = 0;
-  
+    let diversitycreds = 0;
+
     for (let i = 0; i < selectedCourses.length; i++) {
       let course = selectedCourses[i];
-  
-      if (course.gen_ed.some(code => ['DVCC', 'DVUP'].includes(code.toString()))) {
-        fundamentalcreds += parseInt(course.credits);
+
+      if (
+        course.gen_ed.toString().includes("DVCC") || course.gen_ed.toString().includes("DVUP") 
+        || course.gen_ed.toString().includes("DVCC/DVUP") || course.gen_ed.toString().includes("DVUP/DVCC")
+      ) {
+        diversitycreds += parseInt(course.credits);
       }
-      
     }
-  
-    return fundamentalcreds;
+
+    return diversitycreds;
   }
 
   return (
     <div id="main">
       <div id="section-1">
         {" "}
-        
         {/* <h1>UMD Gen Ed Planner</h1>{" "} */}
         <div className="page-header">
           <img
@@ -165,14 +170,15 @@ function GenEdPlanner({ courses }) {
             <ul>
               {selectedCourses.map((course) => (
                 <div key={course.course_id} className="mycourse-button">
-                  {course.course_id} - {course.name} - {course.credits} credits {' '}
-                  <button
-                    className="remove-button"
-                    onClick={() => removeSelectedCourse(course)}
-                  >
-                    {"                                 "}
-                    Remove Course{" "}
-                  </button>
+                  {course.gen_ed} - {course.course_id} - {course.name} - {course.credits} credits
+                  <div>
+                    <button
+                      className="remove-button"
+                      onClick={() => removeSelectedCourse(course)}
+                    >
+                      Remove Course
+                    </button>
+                  </div>
                 </div>
               ))}
             </ul>
@@ -182,9 +188,14 @@ function GenEdPlanner({ courses }) {
             <div class="grid-container">
               <div class="box blue">
                 <h4>Fundamental Studies</h4>
-                <div class="credits"> {FundamentalCredits(selectedCourses)}/15 Credits</div>
+                <div class="credits">
+                  {" "}
+                  {FundamentalCredits(selectedCourses)}/15 Credits
+                </div>
                 <div class="completed"></div>
-                <div class="completed"><b>Courses:</b></div>
+                <div class="completed">
+                  <b>Courses:</b>
+                </div>
                 <div class="completed">FSAW: 3 credits</div>
                 <div class="completed">FSPW: 3 credits</div>
                 <div class="completed">FSOC: 3 credits</div>
@@ -193,8 +204,12 @@ function GenEdPlanner({ courses }) {
               </div>
               <div class="box yellow">
                 <h4>Distributive Studies</h4>
-                <div class="credits">{DistributiveCredits(selectedCourses)}/25 Credits</div>
-                <div class="completed"><b>Courses:</b> </div>
+                <div class="credits">
+                  {DistributiveCredits(selectedCourses)}/25 Credits
+                </div>
+                <div class="completed">
+                  <b>Courses:</b>{" "}
+                </div>
                 <div class="completed">DSNL/DSNS: 7 credits</div>
                 <div class="completed">DSHS: 6 credits</div>
                 <div class="completed">DSHU: 6 credits</div>
@@ -202,30 +217,42 @@ function GenEdPlanner({ courses }) {
               </div>
               <div class="box purple">
                 <h4>I-Series</h4>
-                <div class="credits">{SeriesCredits(selectedCourses)}/6 Credits</div>
+                <div class="credits">
+                  {SeriesCredits(selectedCourses)}/6 Credits
+                </div>
                 <div class="completed"></div>
-                <div class="completed"><b>Courses:</b> </div>
+                <div class="completed">
+                  <b>Courses:</b>{" "}
+                </div>
                 <div class="completed">SCIS: 6 credits </div>
-
               </div>
               <div class="box green">
                 <h4>Diversity</h4>
-                <div class="credits">{DiversityCredits(selectedCourses)}/6 Credits</div>
+                <div class="credits">
+                  {DiversityCredits(selectedCourses)}/6 Credits
+                </div>
                 <div class="completed"></div>
-                <div class="completed"><b>Courses:</b> </div>
+                <div class="completed">
+                  <b>Courses:</b>{" "}
+                </div>
                 <div class="completed">DVUP/DVCC: 6 credits </div>
               </div>
             </div>
             <h3> Total Credits: {calculateTotalCredits(selectedCourses)}</h3>
           </div>
         </div>
-            <hr></hr>    
-        <h1> <b>Available General Education Courses</b></h1>
+        <hr></hr>
+        <h1>
+          {" "}
+          <b>Available General Education Courses</b>
+        </h1>
         <div>{genEdButtons}</div>
+
       </div>
+      <Footer/>
     </div>
   );
 }
 
 export default GenEdPlanner;
-<h3>Footer</h3>;
+
