@@ -71,7 +71,7 @@ function GenEdPlanner({ courses }) {
   };
 
   function scrollToTop() {
-    window.scrollTo({ top: 300, behavior: "smoot" });
+    window.scrollTo({ top: 300, behavior: "smooth" });
   }
 
   function calculateTotalCredits(selectedCourses) {
