@@ -31,6 +31,7 @@ function GenEdPlanner({ courses }) {
           key={course.course_id}
           className="course-button"
           onClick={() => {
+            scrollToTop();
             if (
               !selectedCourses.some((c) => c.course_id === course.course_id)
             ) {
@@ -69,6 +70,10 @@ function GenEdPlanner({ courses }) {
     );
   };
 
+  function scrollToTop() {
+    window.scrollTo({ top: 300, behavior: "smoot" });
+  }
+
   function calculateTotalCredits(selectedCourses) {
     let uniqueCourses = [];
     let totalCredits = 0;
@@ -89,11 +94,12 @@ function GenEdPlanner({ courses }) {
       let course = selectedCourses[i];
 
       if (
-        course.gen_ed.toString().includes("FSAW") || course.gen_ed.toString().includes("FSPA") 
-        || course.gen_ed.toString().includes("FSOC") || course.gen_ed.toString().includes("FSMA") 
-        || course.gen_ed.toString().includes("FSAR") 
+        course.gen_ed.toString().includes("FSAW") ||
+        course.gen_ed.toString().includes("FSPA") ||
+        course.gen_ed.toString().includes("FSOC") ||
+        course.gen_ed.toString().includes("FSMA") ||
+        course.gen_ed.toString().includes("FSAR")
       ) {
-
         fundamentalcreds += parseInt(course.credits);
       }
     }
@@ -107,9 +113,11 @@ function GenEdPlanner({ courses }) {
       let course = selectedCourses[i];
 
       if (
-        course.gen_ed.toString().includes("DSNL") || course.gen_ed.toString().includes("DSNS") 
-        || course.gen_ed.toString().includes("DSHS") || course.gen_ed.toString().includes("DSHU")
-        || course.gen_ed.toString().includes("DSSP")
+        course.gen_ed.toString().includes("DSNL") ||
+        course.gen_ed.toString().includes("DSNS") ||
+        course.gen_ed.toString().includes("DSHS") ||
+        course.gen_ed.toString().includes("DSHU") ||
+        course.gen_ed.toString().includes("DSSP")
       ) {
         distributivecreds += parseInt(course.credits);
       }
@@ -139,8 +147,10 @@ function GenEdPlanner({ courses }) {
       let course = selectedCourses[i];
 
       if (
-        course.gen_ed.toString().includes("DVCC") || course.gen_ed.toString().includes("DVUP") 
-        || course.gen_ed.toString().includes("DVCC/DVUP") || course.gen_ed.toString().includes("DVUP/DVCC")
+        course.gen_ed.toString().includes("DVCC") ||
+        course.gen_ed.toString().includes("DVUP") ||
+        course.gen_ed.toString().includes("DVCC/DVUP") ||
+        course.gen_ed.toString().includes("DVUP/DVCC")
       ) {
         diversitycreds += parseInt(course.credits);
       }
@@ -170,7 +180,9 @@ function GenEdPlanner({ courses }) {
             <ul>
               {selectedCourses.map((course) => (
                 <div key={course.course_id} className="mycourse-button">
-                  {course.gen_ed} - {course.course_id} - {course.name} - {course.credits} credits
+                  <p><b>{course.name}</b></p>
+                  {course.course_id} - {course.gen_ed.join(' ')} -{" "}
+                  {course.credits} credits
                   <div>
                     <button
                       className="remove-button"
@@ -238,7 +250,9 @@ function GenEdPlanner({ courses }) {
                 <div class="completed">DVUP/DVCC: 6 credits </div>
               </div>
             </div>
-            <h3> Total Credits: {calculateTotalCredits(selectedCourses)}</h3>
+            <div class = "box white">
+              <h3> Total Credits: {calculateTotalCredits(selectedCourses)}</h3>
+            </div>
           </div>
         </div>
         <hr></hr>
@@ -247,12 +261,10 @@ function GenEdPlanner({ courses }) {
           <b>Available General Education Courses</b>
         </h1>
         <div>{genEdButtons}</div>
-
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
 
 export default GenEdPlanner;
-

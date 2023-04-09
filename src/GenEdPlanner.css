@@ -39,7 +39,7 @@
   color: white;
   margin: 10px;
   margin-right: 40px;
-  padding: 25px;
+  padding: 5px;
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
@@ -131,6 +131,15 @@
 .green {
   background-color: green;
 }
+
+.white {
+  background-color: white;
+  height: 30px;
+  display: flex;
+  justify-content: center; /* centers content horizontally */
+  align-items: center; /* centers content vertically */
+}
+
 
 .credits {
   font-size: 20px;

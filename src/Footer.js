@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <FooterContainer>
       <p>Created by Anshul Ganumpally, Rahul Anantuni, Rithwwick Rangaraju, Sam Sanjith</p>
-      <Link href="https://github.com/anshulg614" target="_blank">
+      <Link href="https://github.com/anshulg614/UMD-Course-Tracker" target="_blank">
         <FaGithub />
       </Link>
     </FooterContainer>
@@ -25,8 +25,6 @@ const FooterContainer = styled.div`
   color: white;
   z-index: 999;
 `;
-
-
 
 const Link = styled.a`
   position: relative;
