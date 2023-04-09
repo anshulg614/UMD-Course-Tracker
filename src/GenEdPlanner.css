@@ -36,7 +36,7 @@
   border: none;
   background-color: rgb(146, 19, 36);
   /*59116b*/
-  color: rgb(26, 24, 24);
+  color: rgb(255, 255, 255);
   margin: 10px;
   margin-right: 40px;
   padding: 5px;
@@ -133,7 +133,7 @@
 }
 
 .white {
-  background-color: white;
+  background-color: rgb(32, 27, 27);
   height: 30px;
   display: flex;
   justify-content: center; /* centers content horizontally */

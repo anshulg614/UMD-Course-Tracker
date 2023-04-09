@@ -5,7 +5,7 @@ import { FaGithub } from "react-icons/fa";
 const Footer = () => {
   return (
     <FooterContainer>
-      <p>Created by Anshul Ganumpally, Rahul Anantuni, Rithwwick Rangaraju, Sam Sanjith</p>
+      <p>Created by Anshul Ganumpally, Rahul Anantuni, Ritvik Venkat, Sam Sanjith</p>
       <Link href="https://github.com/anshulg614/UMD-Course-Tracker" target="_blank">
         <FaGithub />
       </Link>
